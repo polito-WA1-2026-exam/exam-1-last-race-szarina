@@ -19,21 +19,21 @@ export function getBFSdistances(startId, connections) {
     return dist;
 }
 
-export function validateRoute(submittedConnections, startStationId, destStationId, interchangeIds) {
+export function validateRoute(submittedConnections, startStationId, destStationId, interchangeIds, stationNames) {
     // order must be preserved
     if (submittedConnections.length === 0) {
-        return false;
+        return { valid: false, reason: 'No segments submitted' };
     }
 
     const connectionIds = submittedConnections.map(c => c.id);
     if (new Set(connectionIds).size !== connectionIds.length) {
-        return false;
+        return { valid: false, reason: 'A segment was used more than once' };
     }
 
     const firstConnection = submittedConnections[0];
     if (firstConnection.station_id_1 !== startStationId
         && firstConnection.station_id_2 !== startStationId) {
-        return false;
+        return { valid: false, reason: 'Route does not start at the assigned station' };
     }
 
     let currentStationId = startStationId;
@@ -49,15 +49,21 @@ export function validateRoute(submittedConnections, startStationId, destStationI
         }
 
         if (nextStationId === null) {
-            return false;
+            return { valid: false, reason: `Segment does not continue from ${stationNames[currentStationId]}`   };
         }
 
         if (currentLineId !== null && connection.line_id !== currentLineId
             && !interchangeIds.includes(currentStationId)) {
-            return false;
+            return  { valid: false, reason: `Cannot change lines at ${stationNames[currentStationId]} (not an interchange)`
+             };
         }
         currentStationId = nextStationId;
         currentLineId = connection.line_id;
     }
-    return currentStationId === destStationId;
+
+    if (currentStationId !== destStationId) {
+        return { valid: false, reason: `Route ends at ${stationNames[currentStationId]} instead of ${stationNames[destStationId]}`  };
+    }
+
+    return { valid: true };
 }

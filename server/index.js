@@ -5,7 +5,9 @@ import cors from "cors";
 import session from "express-session";
 import passport from "passport";
 import {Strategy as LocalStrategy} from "passport-local";
-import { getUser, getLines, getStations, getConnections, getSegments, createGame, submitRoute, getGame, getRanking } from "./dao.js"// init express
+import { getUser, getLines, getStations, getConnections, getSegments, createGame, submitRoute, getGame, getRanking } from "./dao.js"
+import {GameAlreadySubmittedError, NoReachableDestinationError} from "./errors.js";
+// init express
 const app = express();
 const port = 3001;
 
@@ -93,10 +95,21 @@ app.get('/api/segments', isLoggedIn,  (req, res) => {
 app.post('/api/games', isLoggedIn, (req, res) =>{
     createGame(req.user.id)
         .then((game) => res.json(game))
-        .catch(() => res.status(500).end());
+        .catch((err) => {
+            if (err instanceof NoReachableDestinationError) {
+                return res.status(500).json({ error: err.message });
+            }
+            res.status(500).end();
+        });
 });
 
 app.post('/api/games/:id/route', isLoggedIn, async (req, res) => {
+    const { connection_ids } = req.body;
+
+    if (!Array.isArray(connection_ids)) {
+        return res.status(400).json({ error: 'connection_ids must be an array' });
+    }
+
     try {
         const game = await getGame(req.params.id);
 
@@ -109,9 +122,17 @@ app.post('/api/games/:id/route', isLoggedIn, async (req, res) => {
             return res.status(403).json({ error: 'This game does not belong to you' });
         }
 
-        const result = await submitRoute(req.params.id, req.body.connection_ids);
+        const result = await submitRoute(game, connection_ids);
+
+
         res.json(result);
     } catch (err) {
+        if (err instanceof GameAlreadySubmittedError) {
+            return res.status(409).json({ error: err.message });
+        }
+        if (err instanceof NoReachableDestinationError) {
+            return res.status(500).json({ error: err.message });
+        }
         res.status(500).end();
     }
 });

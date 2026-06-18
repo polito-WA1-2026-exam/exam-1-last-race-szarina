@@ -2,6 +2,7 @@ import db from './db.js';
 import crypto from 'crypto'
 
 import {getBFSdistances, validateRoute} from './utils.js'
+import {GameAlreadySubmittedError,  NoReachableDestinationError} from "./errors.js";
 
 // Auth functions
 export const getUser = (username, password) => {
@@ -125,7 +126,7 @@ export const createGame = async (userId) => {
 
     // normally shouldnt happen
     if (!reachableStations.length)
-        throw new Error('No reachable stations found for this start station.');
+        throw new NoReachableDestinationError();
 
     const destStation = reachableStations[Math.floor(Math.random() * reachableStations.length)];
 
@@ -212,19 +213,25 @@ export const getInterchangeStationIds = () => {
 
 // Submit
 // connectionIds must be sent in order
-export const submitRoute = async(gameId, connectionIds) => {
-    const game = await getGame(gameId);
+export const submitRoute = async(game, connectionIds) => {
+    if (game.is_valid !== null) {
+        throw new GameAlreadySubmittedError();
+    }
+
     const submittedConnections = await getConnectionsByIds(connectionIds);
     const interchangeIds = await getInterchangeStationIds();
+    const allStations = await getStations();
+    const stationNames = Object.fromEntries(allStations.map(s => [s.id, s.name]))
 
-    const isValid = validateRoute(submittedConnections,
+    const validation  = validateRoute(submittedConnections,
         game.start_station_id,
         game.dest_station_id,
-        interchangeIds);
+        interchangeIds,
+        stationNames);
 
-    if(!isValid){
-        await updateGameResult(gameId, 0, 0);
-        return {valid:false};
+    if(!validation.valid){
+        await updateGameResult(game.id, 0, 0);
+        return { valid: false, reason: validation.reason };
     }
 
     let coins = 20;
@@ -235,7 +242,7 @@ export const submitRoute = async(gameId, connectionIds) => {
         const event = await getRandomEvent();
         coins = coins + event.effect;
 
-        await insertGameSegment(gameId, connection.id, i, event.id, coins);
+        await insertGameSegment(game.id, connection.id, i, event.id, coins);
 
         steps.push({
             step_order: i,
@@ -247,7 +254,7 @@ export const submitRoute = async(gameId, connectionIds) => {
     }
 
     const coinsFinal = Math.max(0, coins);
-    await updateGameResult(gameId, coinsFinal,1);
+    await updateGameResult(game.id, coinsFinal,1);
 
     return {valid:true, steps, coins_final: coinsFinal};
 
