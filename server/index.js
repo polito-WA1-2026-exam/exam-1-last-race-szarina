@@ -5,9 +5,7 @@ import cors from "cors";
 import session from "express-session";
 import passport from "passport";
 import {Strategy as LocalStrategy} from "passport-local";
-import { getUser, getLines, getStations, getConnections, getSegments, createGame, submitRoute } from "./dao.js"
-
-// init express
+import { getUser, getLines, getStations, getConnections, getSegments, createGame, submitRoute, getGame, getRanking } from "./dao.js"// init express
 const app = express();
 const port = 3001;
 
@@ -90,6 +88,40 @@ app.get('/api/segments', isLoggedIn,  (req, res) => {
 });
 
 
+// GAME start
+
+app.post('/api/games', isLoggedIn, (req, res) =>{
+    createGame(req.user.id)
+        .then((game) => res.json(game))
+        .catch(() => res.status(500).end());
+});
+
+app.post('/api/games/:id/route', isLoggedIn, async (req, res) => {
+    try {
+        const game = await getGame(req.params.id);
+
+        if (!game) {
+            return res.status(404).json({ error: 'Game not found' });
+        }
+
+        // just in case
+        if (game.user_id !== req.user.id) {
+            return res.status(403).json({ error: 'This game does not belong to you' });
+        }
+
+        const result = await submitRoute(req.params.id, req.body.connection_ids);
+        res.json(result);
+    } catch (err) {
+        res.status(500).end();
+    }
+});
+
+// RANKING
+app.get('/api/ranking', isLoggedIn, (req,res) => {
+    getRanking()
+        .then((ranking) => res.json(ranking))
+        .catch(() => res.status(500).end());
+})
 
 // activate the server
 app.listen(port, () => {
