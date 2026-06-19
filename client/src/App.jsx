@@ -7,6 +7,8 @@ import { Navigate, Outlet, Route, Routes, useNavigate } from 'react-router'
 import UserContext from './contexts/UserContext.js'
 import { checkSession } from './api/auth.js'
 import {LoginForm, Logout}  from './components/LoginForm.jsx'
+import { getNetwork } from './api/api.js'
+import NetworkMap from './components/NetworkMap.jsx'
 
 function App() {
     const navigate = useNavigate()
@@ -69,8 +71,24 @@ function LoginView(props) {
 
 function HomeView(props) {
     const user = useContext(UserContext)
+    const navigate = useNavigate()
+    const [network, setNetwork] = useState(null)
+
+    useEffect(() => {
+        getNetwork().then(setNetwork).catch(() => {})
+    }, [])
+
     if (!user.id) return <Navigate to='/' />
-    return <h1>Home page placeholder</h1>
+    if (!network) return <p>Loading map...</p>
+
+    return (
+        <>
+            <h1>Welcome, {user.username}</h1>
+            <NetworkMap lines={network.lines} stations={network.stations} connections={network.connections} mode="full" />
+            <button onClick={() => navigate('/ranking')}>Ranking</button>
+            <button onClick={() => navigate('/game')}>Play</button>
+        </>
+    )
 }
 
 function GameView() {
