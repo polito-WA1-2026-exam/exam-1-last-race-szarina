@@ -6,7 +6,7 @@ import { Navigate, Outlet, Route, Routes, useNavigate } from 'react-router'
 
 import UserContext from './contexts/UserContext.js'
 import { checkSession } from './api/auth.js'
-import LoginForm from './components/LoginForm.jsx'
+import {LoginForm, Logout}  from './components/LoginForm.jsx'
 
 function App() {
     const navigate = useNavigate()
@@ -39,6 +39,7 @@ function App() {
                         <Route index element={<LandingView />} />
                         <Route path='login' element={<LoginView doLoginSuccess={doLoginSuccess} />} />
                         <Route path='home' element={<HomeView doLogoutSuccess={doLogoutSuccess} />} />
+                        <Route path='logout' element={<Logout doLogoutSuccess={doLogoutSuccess} />} />
                         <Route path='game' element={<GameView />} />
                         <Route path='ranking' element={<RankingView />} />
                     </Route>

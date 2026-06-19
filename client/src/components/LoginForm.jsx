@@ -1,6 +1,7 @@
-import { useState } from "react"
-import { doLogin } from "../api/auth"
+import {useEffect, useState} from "react"
+import {doLogin, doLogout} from "../api/auth"
 import { Form, Button, Container } from "react-bootstrap"
+import {useNavigate} from "react-router";
 
 function LoginForm(props) {
 
@@ -43,4 +44,15 @@ function LoginForm(props) {
     )
 }
 
-export default LoginForm
+function Logout(props){
+    const navigate = useNavigate()
+    useEffect(() => {
+        doLogout().then(() => {
+            props.doLogoutSuccess()
+        })
+    }, [])
+    return "Logging out..."
+}
+
+
+export { LoginForm, Logout };
