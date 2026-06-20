@@ -230,8 +230,10 @@ async function seedData() {
         ['Missed your stop', -1],
         ['Too many people, squashed', -1],
         ['Wrong platform, lost time', -2],
+        ['Phone battery died, missed an alert', -2],
         ['Sudden emergency stop, dropped bag', -2],
         ['Pickpocket on the train', -3],
+        ['Spilled coffee on your jacket', -3],
         ['Metro delayed significantly', -4],
     ];
     for (const [description, effect] of eventSeeds) {

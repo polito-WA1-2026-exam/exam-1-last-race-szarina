@@ -26,34 +26,46 @@ function PlanningPhase({ startStation, destStation, onSubmitRoute }) {
     }
 
     return (
-        <>
-            <Timer seconds={90} onExpire={handleSubmit} />
-            <h3>From {startStation.name} to {destStation.name}</h3>
-
-            <NetworkMap stations={stations} mode="dots-only" />
-
-            <div>
-                <h4>Available segments</h4>
-                {segments.map((seg) => (
-                    <button key={seg.id} onClick={() => handleSelectSegment(seg)}>
-                        {seg.station_1} — {seg.station_2}
-                    </button>
-                ))}
+        <div className="planning-layout">
+            <div className="planning-header">
+                <span className="badge-pill"><Timer seconds={90} onExpire={handleSubmit} /></span>
+                <h3>From {startStation.name} to {destStation.name}</h3>
             </div>
 
-            <div>
+            <div className="planning-grid">
+                <div className="card-surface planning-map">
+                    <NetworkMap stations={stations} mode="dots-only" />
+                </div>
+
+                <div className="card-surface">
+                    <h4>Available segments</h4>
+                    <div className="segment-list">
+                        {segments.map((seg) => (
+                            <button key={seg.id} className="btn-outline-gold segment-btn" onClick={() => handleSelectSegment(seg)} disabled={selectedIds.includes(seg.id)}>
+                                {seg.station_1} — {seg.station_2}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            <div className="card-surface route-full-width">
                 <h4>Your route</h4>
-                {selectedIds.map((id) => {
-                    const seg = segments.find(s => s.id === id)
-                    return <span key={id}>{seg.station_1} — {seg.station_2}</span>
-                })}
-                {selectedIds.length > 0 && (
-                    <button onClick={handleRemoveLast}>Remove last</button>
-                )}
+                <div className="segment-list">
+                    {selectedIds.map((id) => {
+                        const seg = segments.find(s => s.id === id)
+                        return <span key={id} className="badge-pill route-step">{seg.station_1} — {seg.station_2}</span>
+                    })}
+                </div>
             </div>
 
-            <button onClick={handleSubmit}>Submit route</button>
-        </>
+            <div className="route-actions">
+                {selectedIds.length > 0 && (
+                    <button className="btn-outline-gold" onClick={handleRemoveLast}>Remove last</button>
+                )}
+                <button className="btn-gold" onClick={handleSubmit}>Submit route</button>
+            </div>
+        </div>
     )
 }
 

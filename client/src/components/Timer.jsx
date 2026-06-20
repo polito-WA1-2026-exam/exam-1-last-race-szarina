@@ -16,6 +16,6 @@ function Timer({seconds, onExpire}) {
     }, 1000)
     return () => clearInterval(interval)
     }, [])
-    return <h3>Time left: {timeLeft}s</h3>
+    return <>Time left: {timeLeft}s</>
 }
 export default Timer
