@@ -159,6 +159,11 @@ app.get('/api/games/:id', isLoggedIn, async (req, res) => {
     }
 });
 
+app.get('/api/stations', isLoggedIn, (req, res) => {
+    getStations()
+        .then((stations) => res.json(stations))
+        .catch(() => res.status(500).end());
+});
 
 // activate the server
 app.listen(port, () => {

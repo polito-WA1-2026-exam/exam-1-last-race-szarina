@@ -66,4 +66,16 @@ async function getRanking() {
     }
 }
 
-export { getNetwork, getSegments, createGame, submitRoute, getRanking }
+async function getStations() {
+    const response = await fetch(`${SERVER_URL}/api/stations`, {
+        credentials: 'include'
+    })
+    if (response.ok) {
+        return await response.json()
+    } else {
+        const errorBody = await response.json()
+        throw new Error(errorBody.error || "Failed to fetch stations")
+    }
+}
+
+export { getNetwork, getSegments, createGame, submitRoute, getRanking , getStations}
