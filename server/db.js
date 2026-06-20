@@ -242,8 +242,8 @@ async function seedData() {
 
     // USERS
     const userSeeds = [
-        ['alice', 'password123'],
-        ['bob', 'password123'],
+        ['aruzhan', 'password123'],
+        ['nurlan', 'password123'],
         ['zarina', 'password123'],
     ];
     for (const [username, password] of userSeeds) {
@@ -256,11 +256,11 @@ async function seedData() {
     }
 
     // ── SEEDED GAMES ──
-    // alice: Alashan→Dostyk→Abai→Baiterek (Red Line, 3 segments)
+    // aruzhan: Alashan→Dostyk→Abai→Baiterek (Red Line, 3 segments)
     await run(`
         INSERT OR IGNORE INTO games(user_id, start_station_id, dest_station_id, coins_final, is_valid, created_at)
         VALUES (
-          (SELECT id FROM users    WHERE username = 'alice'),
+          (SELECT id FROM users    WHERE username = 'aruzhan'),
           (SELECT id FROM stations WHERE name = 'Alashan'),
           (SELECT id FROM stations WHERE name = 'Baiterek'),
           23, 1, datetime('now', '-2 days')
@@ -268,7 +268,7 @@ async function seedData() {
     `);
     await run(`
         INSERT OR IGNORE INTO game_route_segments(game_id, connection_id, step_order, event_id, coins_after)
-        SELECT (SELECT id FROM games WHERE user_id = (SELECT id FROM users WHERE username = 'alice')
+        SELECT (SELECT id FROM games WHERE user_id = (SELECT id FROM users WHERE username = 'aruzhan')
                 AND start_station_id = (SELECT id FROM stations WHERE name = 'Alashan') LIMIT 1),
                (SELECT id FROM connections
                 WHERE line_id = (SELECT id FROM lines WHERE name = 'Red Line')
@@ -280,7 +280,7 @@ async function seedData() {
     `);
     await run(`
         INSERT OR IGNORE INTO game_route_segments(game_id, connection_id, step_order, event_id, coins_after)
-        SELECT (SELECT id FROM games WHERE user_id = (SELECT id FROM users WHERE username = 'alice')
+        SELECT (SELECT id FROM games WHERE user_id = (SELECT id FROM users WHERE username = 'aruzhan')
                 AND start_station_id = (SELECT id FROM stations WHERE name = 'Alashan') LIMIT 1),
                (SELECT id FROM connections
                 WHERE line_id = (SELECT id FROM lines WHERE name = 'Red Line')
@@ -292,7 +292,7 @@ async function seedData() {
     `);
     await run(`
         INSERT OR IGNORE INTO game_route_segments(game_id, connection_id, step_order, event_id, coins_after)
-        SELECT (SELECT id FROM games WHERE user_id = (SELECT id FROM users WHERE username = 'alice')
+        SELECT (SELECT id FROM games WHERE user_id = (SELECT id FROM users WHERE username = 'aruzhan')
                 AND start_station_id = (SELECT id FROM stations WHERE name = 'Alashan') LIMIT 1),
                (SELECT id FROM connections
                 WHERE line_id = (SELECT id FROM lines WHERE name = 'Red Line')
@@ -303,11 +303,11 @@ async function seedData() {
                23
     `);
 
-    // bob: Esil→Dostyk→Shymkent→Otrar (Blue Line, 3 segments)
+    // nurlan: Esil→Dostyk→Shymkent→Otrar (Blue Line, 3 segments)
     await run(`
         INSERT OR IGNORE INTO games(user_id, start_station_id, dest_station_id, coins_final, is_valid, created_at)
         VALUES (
-          (SELECT id FROM users    WHERE username = 'bob'),
+          (SELECT id FROM users    WHERE username = 'nurlan'),
           (SELECT id FROM stations WHERE name = 'Esil'),
           (SELECT id FROM stations WHERE name = 'Otrar'),
           17, 1, datetime('now', '-1 days')
@@ -315,7 +315,7 @@ async function seedData() {
     `);
     await run(`
         INSERT OR IGNORE INTO game_route_segments(game_id, connection_id, step_order, event_id, coins_after)
-        SELECT (SELECT id FROM games WHERE user_id = (SELECT id FROM users WHERE username = 'bob')
+        SELECT (SELECT id FROM games WHERE user_id = (SELECT id FROM users WHERE username = 'nurlan')
                 AND start_station_id = (SELECT id FROM stations WHERE name = 'Esil') LIMIT 1),
                (SELECT id FROM connections
                 WHERE line_id = (SELECT id FROM lines WHERE name = 'Blue Line')
@@ -327,7 +327,7 @@ async function seedData() {
     `);
     await run(`
         INSERT OR IGNORE INTO game_route_segments(game_id, connection_id, step_order, event_id, coins_after)
-        SELECT (SELECT id FROM games WHERE user_id = (SELECT id FROM users WHERE username = 'bob')
+        SELECT (SELECT id FROM games WHERE user_id = (SELECT id FROM users WHERE username = 'nurlan')
                 AND start_station_id = (SELECT id FROM stations WHERE name = 'Esil') LIMIT 1),
                (SELECT id FROM connections
                 WHERE line_id = (SELECT id FROM lines WHERE name = 'Blue Line')
@@ -339,7 +339,7 @@ async function seedData() {
     `);
     await run(`
         INSERT OR IGNORE INTO game_route_segments(game_id, connection_id, step_order, event_id, coins_after)
-        SELECT (SELECT id FROM games WHERE user_id = (SELECT id FROM users WHERE username = 'bob')
+        SELECT (SELECT id FROM games WHERE user_id = (SELECT id FROM users WHERE username = 'nurlan')
                 AND start_station_id = (SELECT id FROM stations WHERE name = 'Esil') LIMIT 1),
                (SELECT id FROM connections
                 WHERE line_id = (SELECT id FROM lines WHERE name = 'Blue Line')
