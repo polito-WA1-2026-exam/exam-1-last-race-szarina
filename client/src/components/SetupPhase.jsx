@@ -14,11 +14,11 @@ function SetupPhase({onReady}) {
     }
 
     return (
-        <>
+        <div className="card-surface setup-card">
             <h2>Study the network</h2>
             <NetworkMap lines={network.lines} stations={network.stations} connections={network.connections} mode="full" />
-            <button onClick={onReady}>I'm ready</button>
-        </>
+            <button className="btn-gold" onClick={onReady}>I'm ready</button>
+        </div>
     )
 }
 export default SetupPhase

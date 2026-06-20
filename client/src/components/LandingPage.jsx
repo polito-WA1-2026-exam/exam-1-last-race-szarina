@@ -1,21 +1,27 @@
-import {useState} from "react";
-import {Button, Container} from "react-bootstrap";
-import InstructionsText from "./InstructionsText.jsx";
+import { useState } from "react"
+import InstructionsText from "./InstructionsText.jsx"
 
-function LandingPage({onGoToLogin}){
+function LandingPage({ onGoToLogin }) {
     const [showInstructions, setShowInstructions] = useState(false)
 
-    return(
-        <Container>
+    return (
+        <div className="card-surface landing-card">
             <h1>Last Race</h1>
-            <Button onClick={onGoToLogin}>Login</Button>
-            <Button onClick={()=> setShowInstructions(!showInstructions)}>
-                {showInstructions? 'Hide instructions':'How to play'}
-            </Button>
+            <p className="eyebrow">Start your journey!</p>
 
-        {showInstructions &&  <InstructionsText />}
-        </Container>
+            <div className="button-stack">
+                <button className="btn-gold" onClick={onGoToLogin}>Login</button>
+                <button className="btn-outline-gold" onClick={() => setShowInstructions(!showInstructions)}>
+                    {showInstructions ? 'Hide instructions' : 'How to play'}
+                </button>
+            </div>
 
+            {showInstructions && (
+                <div className="instructions-block">
+                    <InstructionsText />
+                </div>
+            )}
+        </div>
     )
 }
 

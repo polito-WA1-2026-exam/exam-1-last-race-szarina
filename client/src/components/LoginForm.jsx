@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react"
 import {doLogin, doLogout} from "../api/auth"
-import { Form, Button, Container } from "react-bootstrap"
+import { Form } from "react-bootstrap"
 import {useNavigate} from "react-router";
 
 function LoginForm(props) {
@@ -23,7 +23,7 @@ function LoginForm(props) {
     }
 
     return (
-        <Container>
+        <div className="card-surface login-card">
             <h2>Please login</h2>
 
             <Form onSubmit={doSubmit}>
@@ -36,11 +36,11 @@ function LoginForm(props) {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <button className="btn-gold" type="submit">
                     Log in
-                </Button> {errormsg && <div className="text-danger">{errormsg}</div>}
+                </button> {errormsg && <div className="text-danger">{errormsg}</div>}
             </Form>
-        </Container>
+        </div>
     )
 }
 

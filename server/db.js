@@ -108,11 +108,11 @@ async function seedData() {
 
     // LINES
     const lineSeeds = [
-        ['Red Line', '#C94A1E'],
-        ['Blue Line', '#2272C3'],
-        ['Green Line', '#4A8A14'],
-        ['Yellow Line', '#B07010'],
-        ['Purple Line', '#7B3F9E'],
+        ['Red Line', '#C0533B'],
+        ['Blue Line', '#3D7AB5'],
+        ['Green Line', '#5E8C4E'],
+        ['Yellow Line', '#C9912E'],
+        ['Purple Line', '#8A6BA8'],
     ];
     for (const [name, color] of lineSeeds) {
         await run(`INSERT OR IGNORE INTO lines(name, color) VALUES (?, ?)`, [name, color]);
