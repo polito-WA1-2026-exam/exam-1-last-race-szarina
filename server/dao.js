@@ -247,6 +247,8 @@ export const submitRoute = async(game, connectionIds) => {
         steps.push({
             step_order: i,
             connection_id: connection.id,
+            from_station: connection.station_1,
+            to_station: connection.station_2,
             event_description: event.description,
             event_effect: event.effect,
             coins_after: coins

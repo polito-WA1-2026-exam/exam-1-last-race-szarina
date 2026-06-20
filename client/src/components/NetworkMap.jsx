@@ -43,12 +43,13 @@ function NetworkMap({ lines, stations, connections, mode }) {
             {stations.map((station) => {
                 const pos = STATION_POSITIONS[station.name]
                 if (!pos) return null
+                const showInterchange = mode === 'full' && station.is_interchange
                 return (
                     <g key={station.id}>
                         <circle
                             cx={pos.x} cy={pos.y}
-                            r={station.is_interchange ? 10 : 6}
-                            fill={station.is_interchange ? 'white' : '#444'}
+                            r={showInterchange  ? 10 : 6}
+                            fill={showInterchange  ? 'white' : '#444'}
                             stroke="#222"
                             strokeWidth="2"
                         />
