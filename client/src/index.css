@@ -136,28 +136,7 @@ p {
     font-weight: 600;
 }
 
-table.nomad-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-table.nomad-table th {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    text-align: left;
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--border-tan);
-}
-table.nomad-table td {
-    padding: 12px 14px;
-    border-bottom: 1px solid var(--ivory-deep);
-}
-table.nomad-table tr.current-user td {
-    font-weight: 700;
-    color: var(--gold-dark);
-}
+
 
 .landing-card {
     max-width: 500px;
@@ -314,6 +293,7 @@ table.nomad-table tr.current-user td {
 }
 
 /* Result phase */
+
 .result-card {
     max-width: 480px;
     margin: 60px auto;
@@ -352,4 +332,35 @@ table.nomad-table tr.current-user td {
     justify-content: center;
     gap: 12px;
     margin-top: 20px;
+}
+
+
+/* Ranking */
+
+.ranking-back-btn {
+    margin-top: 28px;
+}
+
+table.nomad-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table.nomad-table th {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-tan);
+}
+table.nomad-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--ivory-deep);
+    color: var(--ink);
+}
+table.nomad-table tr.current-user td {
+    font-weight: 700;
+    color: var(--gold-dark);
 }
