@@ -154,21 +154,6 @@ app.get('/api/ranking', isLoggedIn, (req, res) => {
         .catch(() => res.status(500).end());
 })
 
-app.get('/api/games/:id', isLoggedIn, async (req, res) => {
-    try {
-        const game = await getGame(req.params.id);
-        if (!game) {
-            return res.status(404).json({error: 'Game not found'});
-        }
-        if (game.user_id !== req.user.id) {
-            return res.status(403).json({error: 'This game does not belong to you'});
-        }
-        res.json(game);
-    } catch (err) {
-        res.status(500).end();
-    }
-});
-
 app.get('/api/stations', isLoggedIn, (req, res) => {
     getStations()
         .then((stations) => res.json(stations))
