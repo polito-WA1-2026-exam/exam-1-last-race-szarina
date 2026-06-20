@@ -44,7 +44,7 @@ async function submitRoute(gameId, connectionIds) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ connection_ids: connectionIds })
+        body: JSON.stringify({connection_ids: connectionIds})
     })
     if (response.ok) {
         return await response.json()
@@ -78,4 +78,4 @@ async function getStations() {
     }
 }
 
-export { getNetwork, getSegments, createGame, submitRoute, getRanking , getStations}
+export {getNetwork, getSegments, createGame, submitRoute, getRanking, getStations}

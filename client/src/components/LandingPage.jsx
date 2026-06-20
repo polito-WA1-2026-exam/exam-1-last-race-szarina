@@ -1,7 +1,7 @@
-import { useState } from "react"
+import {useState} from "react"
 import InstructionsText from "./InstructionsText.jsx"
 
-function LandingPage({ onGoToLogin }) {
+function LandingPage({onGoToLogin}) {
     const [showInstructions, setShowInstructions] = useState(false)
 
     return (
@@ -18,7 +18,7 @@ function LandingPage({ onGoToLogin }) {
 
             {showInstructions && (
                 <div className="instructions-block">
-                    <InstructionsText />
+                    <InstructionsText/>
                 </div>
             )}
         </div>

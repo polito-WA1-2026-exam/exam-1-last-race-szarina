@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react"
 import {doLogin, doLogout} from "../api/auth"
-import { Form } from "react-bootstrap"
+import {Form} from "react-bootstrap"
 import {useNavigate} from "react-router";
 
 function LoginForm(props) {
@@ -29,22 +29,25 @@ function LoginForm(props) {
             <Form onSubmit={doSubmit}>
                 <Form.Group className="mb-3" controlId="formUsername">
                     <Form.Label>Username</Form.Label>
-                    <Form.Control type="text" placeholder="Enter username" value={username} onChange={(ev) => setUsername(ev.target.value)} />
+                    <Form.Control type="text" placeholder="Enter username" value={username}
+                                  onChange={(ev) => setUsername(ev.target.value)}/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
+                    <Form.Control type="password" placeholder="Password" value={password}
+                                  onChange={(ev) => setPassword(ev.target.value)}/>
                 </Form.Group>
                 <button className="btn-gold" type="submit">
                     Log in
-                </button> {errormsg && <div className="text-danger">{errormsg}</div>}
+                </button>
+                {errormsg && <div className="text-danger">{errormsg}</div>}
             </Form>
         </div>
     )
 }
 
-function Logout(props){
+function Logout(props) {
     const navigate = useNavigate()
     useEffect(() => {
         doLogout().then(() => {
@@ -55,4 +58,4 @@ function Logout(props){
 }
 
 
-export { LoginForm, Logout };
+export {LoginForm, Logout};

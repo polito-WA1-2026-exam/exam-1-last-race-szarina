@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { createGame, submitRoute } from "../api/api.js"
+import {useState} from "react"
+import {createGame, submitRoute} from "../api/api.js"
 import SetupPhase from "./SetupPhase.jsx"
 import PlanningPhase from "./PlanningPhase.jsx"
 import ExecutionPhase from "./ExecutionPhase.jsx"
@@ -22,7 +22,7 @@ function GameController() {
     const [invalidReason, setInvalidReason] = useState(null)
 
     const handleReady = () => {
-        createGame().then((game)=> {
+        createGame().then((game) => {
             setGameId(game.gameId)
             setStartStation(game.startStation)
             setDestStation(game.destStation)
@@ -32,12 +32,12 @@ function GameController() {
 
     const handleSubmitRoute = (connectionIds) => {
         submitRoute(gameId, connectionIds).then((result) => {
-            if (result.valid){
+            if (result.valid) {
                 setSteps(result.steps)
                 setFinalCoins(result.coins_final)
                 setInvalidReason(null)
-                setPhase(PHASES.EXECUTION)}
-            else {
+                setPhase(PHASES.EXECUTION)
+            } else {
                 setSteps([])
                 setFinalCoins(0)
                 setInvalidReason(result.reason)
@@ -57,13 +57,13 @@ function GameController() {
     }
 
     if (phase === PHASES.SETUP) {
-        return <SetupPhase onReady={handleReady} />
+        return <SetupPhase onReady={handleReady}/>
     }
     if (phase === PHASES.PLANNING) {
-        return <PlanningPhase startStation={startStation} destStation={destStation} onSubmitRoute={handleSubmitRoute} />
+        return <PlanningPhase startStation={startStation} destStation={destStation} onSubmitRoute={handleSubmitRoute}/>
     }
     if (phase === PHASES.EXECUTION) {
-        return <ExecutionPhase steps={steps} onDone={() => setPhase(PHASES.RESULT)} />
+        return <ExecutionPhase steps={steps} onDone={() => setPhase(PHASES.RESULT)}/>
     }
     if (phase === PHASES.RESULT) {
         return <ResultPhase finalCoins={finalCoins} onPlayAgain={handlePlayAgain} invalidReason={invalidReason}/>

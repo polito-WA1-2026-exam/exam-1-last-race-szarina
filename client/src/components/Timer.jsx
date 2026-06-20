@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 
 function Timer({seconds, onExpire}) {
     const [timeLeft, setTimeLeft] = useState(seconds);
@@ -13,9 +13,10 @@ function Timer({seconds, onExpire}) {
                 }
                 return prev - 1
             })
-    }, 1000)
-    return () => clearInterval(interval)
+        }, 1000)
+        return () => clearInterval(interval)
     }, [])
     return <>Time left: {timeLeft}s</>
 }
+
 export default Timer

@@ -5,7 +5,17 @@ import cors from "cors";
 import session from "express-session";
 import passport from "passport";
 import {Strategy as LocalStrategy} from "passport-local";
-import { getUser, getLines, getStations, getConnections, getSegments, createGame, submitRoute, getGame, getRanking } from "./dao.js"
+import {
+    getUser,
+    getLines,
+    getStations,
+    getConnections,
+    getSegments,
+    createGame,
+    submitRoute,
+    getGame,
+    getRanking
+} from "./dao.js"
 import {GameAlreadySubmittedError, NoReachableDestinationError} from "./errors.js";
 // init express
 const app = express();
@@ -31,8 +41,8 @@ app.use(passport.initialize())
 app.use(passport.authenticate('session'))
 
 // Authentication
-passport.use(new LocalStrategy(function verify(username, password, callback){
-    getUser(username , password).then((user) => {
+passport.use(new LocalStrategy(function verify(username, password, callback) {
+    getUser(username, password).then((user) => {
         if (!user)
             return callback(null, false, {message: 'Incorrect username or password'});
         return callback(null, user);
@@ -47,26 +57,26 @@ passport.deserializeUser(function (user, callback) {
     return callback(null, user);
 })
 
-const isLoggedIn =(req,res,next) => {
-    if (req.isAuthenticated()){
+const isLoggedIn = (req, res, next) => {
+    if (req.isAuthenticated()) {
         return next();
     }
-    return res.status(401).json({error:'Not authenticated'})
+    return res.status(401).json({error: 'Not authenticated'})
 };
 
 // AUTH routes
-app.post('/api/sessions', passport.authenticate('local'), (req, res)=> {
+app.post('/api/sessions', passport.authenticate('local'), (req, res) => {
     res.json(req.user);
 });
 
 app.delete('/api/sessions/current', (req, res) => {
-    req.logout(()=> {
+    req.logout(() => {
         res.end();
     });
 });
 
 app.get('/api/sessions/current', (req, res) => {
-    if (req.isAuthenticated()){
+    if (req.isAuthenticated()) {
         res.json(req.user);
     } else {
         res.status(401).json({error: 'Not authenticated'});
@@ -74,16 +84,16 @@ app.get('/api/sessions/current', (req, res) => {
 });
 
 // NETWORK
-app.get('/api/network', isLoggedIn, (req, res) =>{
+app.get('/api/network', isLoggedIn, (req, res) => {
     Promise.all([getLines(), getStations(), getConnections()])
-        .then(([lines, stations, connections])=> {
+        .then(([lines, stations, connections]) => {
             res.json({lines, stations, connections});
         })
-            .catch(() => res.status(500).end());
+        .catch(() => res.status(500).end());
 });
 
 
-app.get('/api/segments', isLoggedIn,  (req, res) => {
+app.get('/api/segments', isLoggedIn, (req, res) => {
     getSegments()
         .then((segments) => res.json(segments))
         .catch(() => res.status(500).end());
@@ -92,34 +102,34 @@ app.get('/api/segments', isLoggedIn,  (req, res) => {
 
 // GAME start
 
-app.post('/api/games', isLoggedIn, (req, res) =>{
+app.post('/api/games', isLoggedIn, (req, res) => {
     createGame(req.user.id)
         .then((game) => res.json(game))
         .catch((err) => {
             if (err instanceof NoReachableDestinationError) {
-                return res.status(500).json({ error: err.message });
+                return res.status(500).json({error: err.message});
             }
             res.status(500).end();
         });
 });
 
 app.post('/api/games/:id/route', isLoggedIn, async (req, res) => {
-    const { connection_ids } = req.body;
+    const {connection_ids} = req.body;
 
     if (!Array.isArray(connection_ids)) {
-        return res.status(400).json({ error: 'connection_ids must be an array' });
+        return res.status(400).json({error: 'connection_ids must be an array'});
     }
 
     try {
         const game = await getGame(req.params.id);
 
         if (!game) {
-            return res.status(404).json({ error: 'Game not found' });
+            return res.status(404).json({error: 'Game not found'});
         }
 
         // just in case
         if (game.user_id !== req.user.id) {
-            return res.status(403).json({ error: 'This game does not belong to you' });
+            return res.status(403).json({error: 'This game does not belong to you'});
         }
 
         const result = await submitRoute(game, connection_ids);
@@ -128,17 +138,17 @@ app.post('/api/games/:id/route', isLoggedIn, async (req, res) => {
         res.json(result);
     } catch (err) {
         if (err instanceof GameAlreadySubmittedError) {
-            return res.status(409).json({ error: err.message });
+            return res.status(409).json({error: err.message});
         }
         if (err instanceof NoReachableDestinationError) {
-            return res.status(500).json({ error: err.message });
+            return res.status(500).json({error: err.message});
         }
         res.status(500).end();
     }
 });
 
 // RANKING
-app.get('/api/ranking', isLoggedIn, (req,res) => {
+app.get('/api/ranking', isLoggedIn, (req, res) => {
     getRanking()
         .then((ranking) => res.json(ranking))
         .catch(() => res.status(500).end());
@@ -148,10 +158,10 @@ app.get('/api/games/:id', isLoggedIn, async (req, res) => {
     try {
         const game = await getGame(req.params.id);
         if (!game) {
-            return res.status(404).json({ error: 'Game not found' });
+            return res.status(404).json({error: 'Game not found'});
         }
         if (game.user_id !== req.user.id) {
-            return res.status(403).json({ error: 'This game does not belong to you' });
+            return res.status(403).json({error: 'This game does not belong to you'});
         }
         res.json(game);
     } catch (err) {
@@ -167,7 +177,7 @@ app.get('/api/stations', isLoggedIn, (req, res) => {
 
 // activate the server
 app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`);
+    console.log(`Server listening at http://localhost:${port}`);
 });
 
 

@@ -1,7 +1,7 @@
-import { useState } from "react"
+import {useState} from "react"
 import {CoinIcon} from "./Icons.jsx";
 
-function ExecutionPhase({ steps, onDone }) {
+function ExecutionPhase({steps, onDone}) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0)
 
     const currentStep = steps[currentStepIndex]
@@ -35,9 +35,9 @@ function ExecutionPhase({ steps, onDone }) {
                     <h3>{currentStep.from_station} → {currentStep.to_station}</h3>
                     <p className="event-description">{currentStep.event_description}</p>
                     <p className={currentStep.event_effect >= 0 ? 'event-effect positive' : 'event-effect negative'}>
-                        {currentStep.event_effect >= 0 ? '+' : ''}{currentStep.event_effect} <CoinIcon size={20} />
+                        {currentStep.event_effect >= 0 ? '+' : ''}{currentStep.event_effect} <CoinIcon size={20}/>
                     </p>
-                    <p className="coin-total">Coins: {currentStep.coins_after} <CoinIcon /></p>
+                    <p className="coin-total">Coins: {currentStep.coins_after} <CoinIcon/></p>
                     <button className="btn-gold" onClick={handleNext}>
                         {isLastStep ? 'Finish' : 'Next step'}
                     </button>

@@ -43,4 +43,4 @@ async function checkSession() {
     }
 }
 
-export { doLogin, doLogout, checkSession }
+export {doLogin, doLogout, checkSession}
