@@ -1,4 +1,7 @@
+import {useNavigate} from "react-router";
+
 function ResultPhase({ finalCoins, onPlayAgain, invalidReason }) {
+    const navigate = useNavigate()
     return (
         <>
             {invalidReason ?(
@@ -15,6 +18,7 @@ function ResultPhase({ finalCoins, onPlayAgain, invalidReason }) {
                 )}
             <h3>Final score: {finalCoins} coins</h3>
             <button onClick={onPlayAgain}>Play again</button>
+            <button onClick={() => navigate('/home')}>Go to home</button>
         </>
     )
 }

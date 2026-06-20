@@ -9,6 +9,8 @@ import { checkSession } from './api/auth.js'
 import {LoginForm, Logout}  from './components/LoginForm.jsx'
 import GameController from "./components/GameController.jsx";
 import RankingPage from "./components/RankingPage.jsx";
+import LandingPage from "./components/LandingPage.jsx";
+import HomePage from "./components/HomePage.jsx";
 
 function App() {
     const navigate = useNavigate()
@@ -59,8 +61,9 @@ function MainLayout() {
 
 function LandingView() {
     const user = useContext(UserContext)
+    const navigate = useNavigate()
     if (user.id) return <Navigate to='/home' />
-    return <h1>Landing page placeholder</h1>
+    return <LandingPage onGoToLogin={() => navigate('/login')} />
 }
 
 function LoginView(props) {
@@ -71,16 +74,8 @@ function LoginView(props) {
 
 function HomeView(props) {
     const user = useContext(UserContext)
-    const navigate = useNavigate()
     if (!user.id) return <Navigate to='/' />
-
-    return (
-        <>
-            <h1>Welcome, {user.username}</h1>
-            <button onClick={() => navigate('/ranking')}>Ranking</button>
-            <button onClick={() => navigate('/game')}>Play</button>
-        </>
-    )
+    return <HomePage/>
 }
 
 function GameView() {
