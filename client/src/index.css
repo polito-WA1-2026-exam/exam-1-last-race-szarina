@@ -312,3 +312,44 @@ table.nomad-table tr.current-user td {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
 }
+
+/* Result phase */
+.result-card {
+    max-width: 480px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+.result-title {
+    margin-bottom: 16px;
+}
+
+.result-title.invalid {
+    color: #B5432F;
+}
+
+.result-card p {
+    font-size: 1.1rem;
+}
+
+.final-score {
+    margin: 24px 0;
+}
+
+.score-value {
+    font-family: 'Fraunces', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--gold-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.result-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}
