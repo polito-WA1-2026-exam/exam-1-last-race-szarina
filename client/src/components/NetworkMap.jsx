@@ -27,8 +27,7 @@ const LABEL_COLOR = '#3A2E14'
 
 function NetworkMap({lines, stations, connections, mode}) {
     return (
-        <svg viewBox="0 -100 760 650"
-             style={{width: '100%', maxWidth: '700px', height: 'auto', display: 'block', margin: '0 auto'}}>
+        <svg viewBox="0 -100 760 650" className="network-map-svg">
             {mode === 'full' && connections.map((conn) => {
                 const line = lines.find(l => l.id === conn.line_id)
                 const pos1 = STATION_POSITIONS[conn.station_1]

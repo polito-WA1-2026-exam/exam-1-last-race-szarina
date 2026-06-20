@@ -85,7 +85,6 @@ p {
     border: 1px solid var(--gold-dark);
     border-radius: 999px;
     color: var(--ink);
-    font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 0.85rem;
     letter-spacing: 0.08em;
@@ -110,7 +109,6 @@ p {
     border: 1px solid var(--gold-dark);
     border-radius: 999px;
     color: var(--ink);
-    font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 0.85rem;
     letter-spacing: 0.06em;
@@ -121,6 +119,7 @@ p {
     background: var(--gold-light);
 }
 
+/* used for the Timer display in PlanningPhase, and for coin/score values */
 .badge-pill {
     display: inline-flex;
     align-items: center;
@@ -129,27 +128,27 @@ p {
     border: 1px solid var(--border-tan);
     border-radius: 999px;
     padding: 6px 18px;
-    font-family: 'Inter', sans-serif;
     font-weight: 600;
     color: var(--ink);
 }
 
+/* Small uppercase caption label, used above "Final score" on ResultPhase, and tagline on LandingPage */
 .eyebrow {
     font-size: 0.72rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-muted);
-    font-family: 'Inter', sans-serif;
     font-weight: 600;
 }
 
-
+/*Landing page */
 .landing-card {
     max-width: 500px;
     margin: 60px auto;
     text-align: center;
 }
 
+/*  Login + How to play buttons*/
 .button-stack {
     display: flex;
     flex-direction: column;
@@ -162,12 +161,13 @@ p {
     text-align: left;
 }
 
+/*login page */
 .login-card {
     max-width: 420px;
     margin: 60px auto;
 }
 
-/* Setup */
+/* Setup phase*/
 .setup-card {
     max-width: 680px;
     margin: 40px auto;
@@ -183,12 +183,13 @@ p {
 }
 
 
-/* ── Planning phase ── */
+/* Planning phase*/
 .planning-layout {
     max-width: 1100px;
     margin: 30px auto;
 }
 
+/* Timer badge + "From X to Y"*/
 .planning-header {
     display: flex;
     align-items: center;
@@ -196,6 +197,7 @@ p {
     margin-bottom: 20px;
 }
 
+/* dots-only map on the left, "Available segments"*/
 .planning-grid {
     display: grid;
     grid-template-columns: 1.3fr 1fr;
@@ -203,14 +205,12 @@ p {
     align-items: start;
 }
 
-.planning-map {
-    margin: 0;
-}
-
+/* "Your route"*/
 .route-full-width {
     margin-top: 20px;
 }
 
+/* "Remove last" / "Submit route" buttons*/
 .route-actions {
     display: flex;
     justify-content: flex-end;
@@ -218,6 +218,7 @@ p {
     margin-top: 20px;
 }
 
+/*For segment lists */
 .segment-list {
     display: flex;
     flex-wrap: wrap;
@@ -355,7 +356,6 @@ table.nomad-table {
 }
 
 table.nomad-table th {
-    font-family: 'Inter', sans-serif;
     font-size: 0.78rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;

@@ -25,19 +25,6 @@ export const getUser = (username, password) => {
     })
 };
 
-
-export const getUserById = (id) => {
-    return new Promise((resolve, reject) => {
-        db.get(`SELECT id, username
-                FROM users
-                WHERE id = ?`, [id], (err, row) => {
-            if (err) reject(err);
-            else resolve(row);
-        })
-    })
-}
-
-
 // Network
 export const getLines = () => {
     return new Promise((resolve, reject) => {
