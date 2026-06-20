@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router";
-import CoinIcon from "./CoinIcon.jsx"
+import {CoinIcon} from "./Icons.jsx"
 
 function ResultPhase({ finalCoins, onPlayAgain, invalidReason }) {
     const navigate = useNavigate()

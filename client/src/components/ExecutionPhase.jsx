@@ -1,5 +1,5 @@
 import { useState } from "react"
-import CoinIcon from "./CoinIcon.jsx";
+import {CoinIcon} from "./Icons.jsx";
 
 function ExecutionPhase({ steps, onDone }) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0)
