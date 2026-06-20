@@ -19,6 +19,7 @@ function GameController() {
     const [destStation, setDestStation] = useState(null)
     const [steps, setSteps] = useState([])
     const [finalCoins, setFinalCoins] = useState([])
+    const [invalidReason, setInvalidReason] = useState(null)
 
     const handleReady = () => {
         createGame().then((game)=> {
@@ -34,10 +35,12 @@ function GameController() {
             if (result.valid){
                 setSteps(result.steps)
                 setFinalCoins(result.coins_final)
+                setInvalidReason(null)
                 setPhase(PHASES.EXECUTION)}
             else {
                 setSteps([])
                 setFinalCoins(0)
+                setInvalidReason(result.reason)
                 setPhase(PHASES.RESULT)
             }
         })
@@ -50,6 +53,7 @@ function GameController() {
         setDestStation(null)
         setSteps([])
         setFinalCoins(null)
+        setInvalidReason(null)
     }
 
     if (phase === PHASES.SETUP) {
@@ -62,7 +66,7 @@ function GameController() {
         return <ExecutionPhase steps={steps} onDone={() => setPhase(PHASES.RESULT)} />
     }
     if (phase === PHASES.RESULT) {
-        return <ResultPhase finalCoins={finalCoins} onPlayAgain={handlePlayAgain}/>
+        return <ResultPhase finalCoins={finalCoins} onPlayAgain={handlePlayAgain} invalidReason={invalidReason}/>
     }
 }
 

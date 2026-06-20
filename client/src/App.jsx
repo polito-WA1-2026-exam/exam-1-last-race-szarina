@@ -8,6 +8,7 @@ import UserContext from './contexts/UserContext.js'
 import { checkSession } from './api/auth.js'
 import {LoginForm, Logout}  from './components/LoginForm.jsx'
 import GameController from "./components/GameController.jsx";
+import RankingPage from "./components/RankingPage.jsx";
 
 function App() {
     const navigate = useNavigate()
@@ -91,7 +92,7 @@ function GameView() {
 function RankingView() {
     const user = useContext(UserContext)
     if (!user.id) return <Navigate to='/' />
-    return <h1>Ranking page placeholder</h1>
+    return <RankingPage/>
 }
 
 export default App
