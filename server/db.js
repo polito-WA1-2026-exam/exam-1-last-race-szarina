@@ -1,7 +1,7 @@
 import sqlite3 from 'sqlite3';
 import crypto from 'crypto';
 
-const db = new sqlite3.Database('database.db', (err) => {
+const db = new sqlite3.Database('database.sqlite', (err) => {
     if (err) throw err;
 });
 
