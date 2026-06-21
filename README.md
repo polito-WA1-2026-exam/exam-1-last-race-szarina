@@ -11,7 +11,6 @@
 - Route `/ranking`: leaderboard showing best score per user
 
 ## API Server
-## API Server
 
 - POST `/api/sessions`
     - request body: `{ username, password }`
@@ -52,7 +51,6 @@
 - Table `games` - contains one row per game played: the user, assigned start/destination stations, final coin total, and validity
 - Table `game_route_segments` - contains the step-by-step history of a completed game: which connection was used, which event occurred, and the running coin total at each step
 
-- ...
 
 ## Main React Components
 
