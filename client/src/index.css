@@ -117,6 +117,13 @@ p {
     transform: translateY(0);
 }
 
+.btn-gold:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: var(--gold-light);
+    box-shadow: none;
+}
+
 .btn-outline-gold {
     background: transparent;
     border: 1px solid var(--gold-dark);

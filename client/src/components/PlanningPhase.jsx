@@ -77,7 +77,9 @@ function PlanningPhase({startStation, destStation, onSubmitRoute}) {
                 {selectedIds.length > 0 && (
                     <button className="btn-outline-gold" onClick={handleRemoveLast}>Remove last</button>
                 )}
-                <button className="btn-gold" onClick={handleManualSubmit}>Submit route</button>
+                <button className="btn-gold" onClick={handleManualSubmit} disabled={selectedIds.length === 0}>Submit
+                    route
+                </button>
             </div>
         </div>
     )
