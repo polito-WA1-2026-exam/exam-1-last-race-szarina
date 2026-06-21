@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react"
-import { getSegments, getStations } from "../api/api.js"
+import {useState, useEffect} from "react"
+import {getSegments, getStations} from "../api/api.js"
 import NetworkMap from "./NetworkMap.jsx"
 
 
-function PlanningPhase({ startStation, destStation, onSubmitRoute }) {
+function PlanningPhase({startStation, destStation, onSubmitRoute}) {
     const [segments, setSegments] = useState([])
     const [stations, setStations] = useState([])
     const [selectedIds, setSelectedIds] = useState([])
@@ -47,14 +47,15 @@ function PlanningPhase({ startStation, destStation, onSubmitRoute }) {
 
             <div className="planning-grid">
                 <div className="card-surface planning-map">
-                    <NetworkMap stations={stations} mode="dots-only" />
+                    <NetworkMap stations={stations} mode="dots-only"/>
                 </div>
 
                 <div className="card-surface">
                     <h4>Available segments</h4>
                     <div className="segment-list">
                         {segments.map((seg) => (
-                            <button key={seg.id} className="btn-outline-gold segment-btn" onClick={() => handleSelectSegment(seg)} disabled={selectedIds.includes(seg.id)}>
+                            <button key={seg.id} className="btn-outline-gold segment-btn"
+                                    onClick={() => handleSelectSegment(seg)} disabled={selectedIds.includes(seg.id)}>
                                 {seg.station_1} — {seg.station_2}
                             </button>
                         ))}

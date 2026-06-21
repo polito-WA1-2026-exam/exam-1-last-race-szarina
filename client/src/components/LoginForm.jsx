@@ -30,7 +30,7 @@ function LoginForm(props) {
 
     return (
         <div className="card-surface login-card">
-            <img src="/ornament.png" alt="" className="landing-ornament" />
+            <img src="/ornament.png" alt="" className="landing-ornament"/>
             <h2>Please login</h2>
 
             <Form onSubmit={doSubmit}>
