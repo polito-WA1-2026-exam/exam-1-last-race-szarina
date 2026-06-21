@@ -32,7 +32,7 @@ function ExecutionPhase({steps, onDone}) {
 
                 <div className="card-surface execution-detail" key={currentStepIndex}>
                     <span className="badge-pill">Step {currentStepIndex + 1} / {steps.length}</span>
-                    <h3>{currentStep.from_station} → {currentStep.to_station}</h3>
+                    <h3>{currentStep.from_station} — {currentStep.to_station}</h3>
                     <p className="event-description">{currentStep.event_description}</p>
                     <p className={currentStep.event_effect >= 0 ? 'event-effect positive' : 'event-effect negative'}>
                         {currentStep.event_effect >= 0 ? '+' : ''}{currentStep.event_effect} <CoinIcon size={20}/>

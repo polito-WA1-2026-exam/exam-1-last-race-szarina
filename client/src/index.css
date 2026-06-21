@@ -107,7 +107,7 @@ p {
 .btn-gold {
     background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
     border: 1px solid var(--gold-dark);
-    border-radius: 999px;
+    border-radius: 10px;
     color: var(--ink);
     font-weight: 600;
     font-size: 0.85rem;
@@ -138,7 +138,7 @@ p {
 .btn-outline-gold {
     background: transparent;
     border: 1px solid var(--gold-dark);
-    border-radius: 999px;
+    border-radius: 10px;
     color: var(--ink);
     font-weight: 600;
     font-size: 0.85rem;
@@ -218,6 +218,7 @@ p {
 .login-page-bg {
     background-image: url('/login_background.png');
 }
+
 .login-card {
     max-width: 420px;
     margin: 60px auto;
@@ -261,7 +262,7 @@ p {
 /* Setup phase*/
 .setup-card {
     max-width: 680px;
-    margin: 40px auto;
+    margin: 10px auto;
     text-align: center;
 }
 
@@ -281,7 +282,7 @@ p {
 /* Planning phase*/
 .planning-layout {
     max-width: 1100px;
-    margin: 30px auto;
+    margin: 15px auto;
 }
 
 /* Timer badge + "From X to Y"*/
