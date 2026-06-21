@@ -163,7 +163,7 @@ p {
     color: var(--ink);
 }
 
-/* Small uppercase caption label, used above "Final score" on ResultPhase, and tagline on LandingPage */
+/* used above "Final score" on ResultPhase, and tagline on LandingPage */
 .eyebrow {
     font-size: 0.72rem;
     letter-spacing: 0.18em;
