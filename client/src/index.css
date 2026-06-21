@@ -38,6 +38,17 @@ p {
     line-height: 1.6;
 }
 
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .card-surface {
     background: var(--card);
     border: 1px solid var(--border-tan);
@@ -45,6 +56,7 @@ p {
     padding: 28px;
     box-shadow: 0 6px 28px rgba(139, 105, 20, 0.10);
     position: relative;
+    animation: fadeInUp 0.3s ease-out;
 }
 
 .card-surface::before,
@@ -142,6 +154,17 @@ p {
 }
 
 /*Landing page */
+.landing-page-bg {
+    background-image: url('/landing_background.png');
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: 40px 20px;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+}
+
 .landing-card {
     max-width: 500px;
     margin: 60px auto;
@@ -284,10 +307,23 @@ p {
     color: #B5432F;
 }
 
+@keyframes coinPop {
+    0% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 .coin-total {
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--ink);
+    animation: coinPop 0.35s ease-out;
 }
 
 .execution-page-bg {

@@ -30,7 +30,7 @@ function ExecutionPhase({steps, onDone}) {
                     ))}
                 </div>
 
-                <div className="card-surface execution-detail">
+                <div className="card-surface execution-detail" key={currentStepIndex}>
                     <span className="badge-pill">Step {currentStepIndex + 1} / {steps.length}</span>
                     <h3>{currentStep.from_station} → {currentStep.to_station}</h3>
                     <p className="event-description">{currentStep.event_description}</p>
