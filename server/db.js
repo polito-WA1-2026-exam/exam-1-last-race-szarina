@@ -219,11 +219,13 @@ async function seedData() {
 
     //EVENTS
     const eventSeeds = [
-        ['Smooth ride, no issues', 0],
+        ['No problems happened', 0],
+        ['Nothing special happened', 0],
         ['Free tea at the station kiosk', 1],
         ['Kind passenger helped you', 1],
         ['Found a lucky coin on the seat', 2],
         ['You saw a cute cat', 2],
+        ['A lot of empty seats', 2],
         ['Express service, arrived early', 3],
         ['Upgrade to VIP seat', 4],
         ['Someone gave you a free ticket', 4],
@@ -287,7 +289,7 @@ async function seedData() {
                 AND station_id_1 = (SELECT id FROM stations WHERE name = 'Dostyk')
                 AND station_id_2 = (SELECT id FROM stations WHERE name = 'Abai')),
                1,
-               (SELECT id FROM events WHERE description = 'Smooth ride, no issues'),
+               (SELECT id FROM events WHERE description = 'No problems happened'),
                21
     `);
     await run(`
@@ -334,7 +336,7 @@ async function seedData() {
                 AND station_id_1 = (SELECT id FROM stations WHERE name = 'Dostyk')
                 AND station_id_2 = (SELECT id FROM stations WHERE name = 'Shymkent')),
                1,
-               (SELECT id FROM events WHERE description = 'Smooth ride, no issues'),
+               (SELECT id FROM events WHERE description = 'No problems happened'),
                18
     `);
     await run(`

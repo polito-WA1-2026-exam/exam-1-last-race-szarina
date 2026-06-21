@@ -182,6 +182,10 @@ export const getConnectionsByIds = async (ids_list) => {
     // i do this because i need to preserve the order of connections
     const allConnections = await getConnections();
     const connectionMap = new Map(allConnections.map(c => [c.id, c]));
+    const result = ids_list.map((id) => connectionMap.get(id));
+    if (result.some(c => c === undefined)) {
+        return [];
+    }
     return ids_list.map((id) => connectionMap.get(id));
 };
 

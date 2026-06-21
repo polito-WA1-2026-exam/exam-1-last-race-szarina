@@ -17,6 +17,7 @@ import {
     getRanking
 } from "./dao.js"
 import {GameAlreadySubmittedError, NoReachableDestinationError} from "./errors.js";
+import {check, param, validationResult} from "express-validator";
 // init express
 const app = express();
 const port = 3001;
@@ -113,39 +114,41 @@ app.post('/api/games', isLoggedIn, (req, res) => {
         });
 });
 
-app.post('/api/games/:id/route', isLoggedIn, async (req, res) => {
-    const {connection_ids} = req.body;
+app.post('/api/games/:id/route', isLoggedIn, [param('id').isNumeric(), check('connection_ids').isArray()],
+    async (req, res) => {
+        const {connection_ids} = req.body;
 
-    if (!Array.isArray(connection_ids)) {
-        return res.status(400).json({error: 'connection_ids must be an array'});
-    }
-
-    try {
-        const game = await getGame(req.params.id);
-
-        if (!game) {
-            return res.status(404).json({error: 'Game not found'});
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(422).json({errors: errors.array()});
         }
 
-        // just in case
-        if (game.user_id !== req.user.id) {
-            return res.status(403).json({error: 'This game does not belong to you'});
-        }
+        try {
+            const game = await getGame(req.params.id);
 
-        const result = await submitRoute(game, connection_ids);
+            if (!game) {
+                return res.status(404).json({error: 'Game not found'});
+            }
+
+            // just in case
+            if (game.user_id !== req.user.id) {
+                return res.status(403).json({error: 'This game does not belong to you'});
+            }
+
+            const result = await submitRoute(game, connection_ids);
 
 
-        res.json(result);
-    } catch (err) {
-        if (err instanceof GameAlreadySubmittedError) {
-            return res.status(409).json({error: err.message});
+            res.json(result);
+        } catch (err) {
+            if (err instanceof GameAlreadySubmittedError) {
+                return res.status(409).json({error: err.message});
+            }
+            if (err instanceof NoReachableDestinationError) {
+                return res.status(500).json({error: err.message});
+            }
+            res.status(500).end();
         }
-        if (err instanceof NoReachableDestinationError) {
-            return res.status(500).json({error: err.message});
-        }
-        res.status(500).end();
-    }
-});
+    });
 
 // RANKING
 app.get('/api/ranking', isLoggedIn, (req, res) => {
