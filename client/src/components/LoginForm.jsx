@@ -13,6 +13,12 @@ function LoginForm(props) {
         ev.preventDefault()
         setErrormsg('')
 
+        if (!username.trim() || !password.trim()) {
+            setErrormsg('Please enter both username and password.')
+            setTimeout(() => setErrormsg(''), 3000)
+            return
+        }
+
         try {
             const user = await doLogin(username, password)
             props.doLoginSuccess(user)
@@ -42,7 +48,7 @@ function LoginForm(props) {
                 <button className="btn-gold" type="submit">
                     Log in
                 </button>
-                {errormsg && <div className="text-danger">{errormsg}</div>}
+                {errormsg && <div className="login-error">{errormsg}</div>}
             </Form>
         </div>
     )

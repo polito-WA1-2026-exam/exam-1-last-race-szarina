@@ -233,6 +233,17 @@ p {
     box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15);
 }
 
+.login-error {
+    margin-top: 16px;
+    padding: 10px 16px;
+    background: rgba(181, 67, 47, 0.08);
+    border: 1px solid rgba(181, 67, 47, 0.3);
+    border-radius: 10px;
+    color: #B5432F;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
 /* Setup phase*/
 .setup-card {
     max-width: 680px;
