@@ -5,7 +5,7 @@ function LandingPage({onGoToLogin}) {
     const [showInstructions, setShowInstructions] = useState(false)
 
     return (
-        <div className="landing-page-bg">
+        <div className="page-bg landing-page-bg">
             <div className="card-surface landing-card">
                 <img src="/ornament.png" alt="" className="landing-ornament" />
                 <h1>Last Race</h1>

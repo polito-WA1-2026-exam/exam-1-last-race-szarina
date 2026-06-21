@@ -10,7 +10,7 @@ function HomePage() {
     const [showInstructions, setShowInstructions] = useState(false)
 
     return (
-        <div className="home-page-bg">
+        <div className="page-bg home-page-bg">
             <div className="card-surface home-card">
                 <h1 className="home-title">Welcome, {user.username}!</h1>
                 <div className="home-divider"></div>

@@ -39,6 +39,7 @@ function PlanningPhase({startStation, destStation, onSubmitRoute}) {
     }
 
     return (
+        <div className="page-bg planning-page-bg">
         <div className="planning-layout">
             <div className="planning-header">
                 <span className="badge-pill">Time left: {timeLeft}s</span>
@@ -81,6 +82,7 @@ function PlanningPhase({startStation, destStation, onSubmitRoute}) {
                     route
                 </button>
             </div>
+        </div>
         </div>
     )
 }

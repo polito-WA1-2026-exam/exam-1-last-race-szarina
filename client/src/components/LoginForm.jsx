@@ -29,27 +29,29 @@ function LoginForm(props) {
     }
 
     return (
-        <div className="card-surface login-card">
-            <img src="/ornament.png" alt="" className="landing-ornament"/>
-            <h2>Please login</h2>
+        <div className="page-bg login-page-bg">
+            <div className="card-surface login-card">
+                <img src="/ornament.png" alt="" className="landing-ornament"/>
+                <h2>Please login</h2>
 
-            <Form onSubmit={doSubmit}>
-                <Form.Group className="mb-3" controlId="formUsername">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control type="text" placeholder="Enter username" value={username}
-                                  onChange={(ev) => setUsername(ev.target.value)}/>
-                </Form.Group>
+                <Form onSubmit={doSubmit}>
+                    <Form.Group className="mb-3" controlId="formUsername">
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control type="text" placeholder="Enter username" value={username}
+                                      onChange={(ev) => setUsername(ev.target.value)}/>
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value={password}
-                                  onChange={(ev) => setPassword(ev.target.value)}/>
-                </Form.Group>
-                <button className="btn-gold" type="submit">
-                    Log in
-                </button>
-                {errormsg && <div className="login-error">{errormsg}</div>}
-            </Form>
+                    <Form.Group className="mb-3" controlId="formPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" value={password}
+                                      onChange={(ev) => setPassword(ev.target.value)}/>
+                    </Form.Group>
+                    <button className="btn-gold" type="submit">
+                        Log in
+                    </button>
+                    {errormsg && <div className="login-error">{errormsg}</div>}
+                </Form>
+            </div>
         </div>
     )
 }

@@ -26,6 +26,17 @@ body {
     min-height: 100vh;
 }
 
+.page-bg {
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: 40px 20px;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+}
+
+
 h1, h2, h3, h4, h5 {
     font-family: 'Fraunces', serif;
     font-weight: 700;
@@ -173,13 +184,6 @@ p {
 
 .landing-page-bg {
     background-image: url('/landing_background.png');
-    background-size: cover;
-    background-position: center top;
-    background-attachment: fixed;
-    min-height: 100vh;
-    padding: 40px 20px;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
 }
 
 .landing-card {
@@ -211,6 +215,9 @@ p {
 }
 
 /*login page */
+.login-page-bg {
+    background-image: url('/login_background.png');
+}
 .login-card {
     max-width: 420px;
     margin: 60px auto;
@@ -328,6 +335,10 @@ p {
     font-size: 0.78rem;
 }
 
+.planning-page-bg {
+    background-image: url('/planning_background.png');
+}
+
 /* Execution phase */
 .execution-layout {
     display: grid;
@@ -393,16 +404,12 @@ p {
 
 .execution-page-bg {
     background-image: url('/mountain_background.png');
-    background-size: cover;
-    background-position: center top;
-    background-attachment: fixed;
-    min-height: 100vh;
-    padding: 40px 20px;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
 }
 
 /* Result phase */
+.result-page-bg {
+    background-image: url('/result_background.png');
+}
 
 .result-card {
     max-width: 480px;
@@ -446,6 +453,9 @@ p {
 
 
 /* Ranking */
+.ranking-page-bg {
+    background-image: url('/ranking_background.png');
+}
 
 .ranking-back-btn {
     margin-top: 28px;
@@ -481,13 +491,6 @@ table.nomad-table tr.current-user td {
 /* Home */
 .home-page-bg {
     background-image: url('/home_background.png');
-    background-size: cover;
-    background-position: center top;
-    background-attachment: fixed;
-    min-height: 100vh;
-    padding: 40px 20px;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
 }
 
 .home-card {

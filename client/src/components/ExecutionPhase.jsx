@@ -16,7 +16,7 @@ function ExecutionPhase({steps, onDone}) {
     }
 
     return (
-        <div className="execution-page-bg">
+        <div className="page-bg execution-page-bg">
             <div className="execution-layout">
                 <div className="card-surface execution-journey">
                     <h4>Your journey</h4>
