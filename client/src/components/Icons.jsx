@@ -1,4 +1,4 @@
-export function CoinIcon({size = 18}) {
+function CoinIcon({size = 18}) {
     return (
         <svg width={size} height={size} viewBox="0 0 24 24"
              style={{display: 'inline-block', verticalAlign: 'middle', position: 'relative', top: '-2px'}}>
@@ -8,7 +8,7 @@ export function CoinIcon({size = 18}) {
     )
 }
 
-export function TrophyIcon() {
+function TrophyIcon() {
     return (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
             <path d="M8 4h8v4a4 4 0 01-8 0V4z"/>
@@ -18,7 +18,7 @@ export function TrophyIcon() {
     )
 }
 
-export function PlayIcon() {
+function PlayIcon() {
     return (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path d="M6 4l14 8-14 8V4z"/>
@@ -26,7 +26,7 @@ export function PlayIcon() {
     )
 }
 
-export function BookIcon() {
+function BookIcon() {
     return (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
             <path d="M3 5a2 2 0 012-2h6v18H5a2 2 0 01-2-2V5z"/>
@@ -35,7 +35,7 @@ export function BookIcon() {
     )
 }
 
-export function ExitIcon() {
+function ExitIcon() {
     return (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
             <path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/>
@@ -43,3 +43,5 @@ export function ExitIcon() {
         </svg>
     )
 }
+
+export { TrophyIcon, PlayIcon, BookIcon, ExitIcon, CoinIcon }

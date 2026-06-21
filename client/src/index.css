@@ -21,7 +21,7 @@ body {
     background-color: var(--ivory);
     background-image: radial-gradient(circle at 20% 0%, var(--ivory-deep) 0%, transparent 45%),
     linear-gradient(180deg, var(--ivory) 0%, var(--ivory-deep) 100%);
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif !important;
     color: var(--ink);
     min-height: 100vh;
 }
@@ -41,7 +41,7 @@ p {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(5px);
+        transform: translateY(3px);
     }
     to {
         opacity: 1;
@@ -86,6 +86,7 @@ p {
 /* BUTTONS */
 .btn-gold,
 .btn-outline-gold {
+    font-family: 'Inter', sans-serif;
     outline: none;
     display: inline-flex;
     align-items: center;
@@ -154,6 +155,15 @@ p {
 }
 
 /*Landing page */
+@keyframes gentleFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
 .landing-page-bg {
     background-image: url('/landing_background.png');
     background-size: cover;
@@ -169,6 +179,15 @@ p {
     max-width: 500px;
     margin: 60px auto;
     text-align: center;
+    animation: gentleFloat 4s ease-in-out infinite;
+}
+
+.landing-ornament {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto 16px;
+    opacity: 0.85;
 }
 
 /*  Login + How to play buttons*/
@@ -188,6 +207,30 @@ p {
 .login-card {
     max-width: 420px;
     margin: 60px auto;
+    text-align: center;
+}
+
+.login-card h2 {
+    margin-bottom: 20px;
+}
+
+.login-card .form-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 0.9rem;
+}
+
+.login-card .form-control {
+    border: 1px solid var(--border-tan);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-family: 'Inter', sans-serif;
+}
+
+.login-card .form-control:focus {
+    border-color: var(--gold-dark);
+    box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15);
 }
 
 /* Setup phase*/
@@ -195,6 +238,10 @@ p {
     max-width: 680px;
     margin: 40px auto;
     text-align: center;
+}
+
+.login-card form {
+    text-align: left;
 }
 
 .network-map-svg {

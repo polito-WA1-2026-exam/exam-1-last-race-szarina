@@ -7,6 +7,7 @@ function LandingPage({onGoToLogin}) {
     return (
         <div className="landing-page-bg">
             <div className="card-surface landing-card">
+                <img src="/ornament.png" alt="" className="landing-ornament" />
                 <h1>Last Race</h1>
                 <p className="eyebrow">Start your journey!</p>
 
