@@ -13,7 +13,7 @@ const PHASES = {
 }
 
 function GameController() {
-    const [phase, setPhase] = useState('setup')
+    const [phase, setPhase] = useState(PHASES.SETUP)
     const [gameId, setGameId] = useState(null)
     const [startStation, setStartStation] = useState(null)
     const [destStation, setDestStation] = useState(null)

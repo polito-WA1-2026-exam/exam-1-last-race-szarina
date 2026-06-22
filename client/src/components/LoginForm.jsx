@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react"
 import {doLogin, doLogout} from "../api/auth"
 import {Form} from "react-bootstrap"
-import {useNavigate} from "react-router";
+
 
 function LoginForm(props) {
 
@@ -57,7 +57,6 @@ function LoginForm(props) {
 }
 
 function Logout(props) {
-    const navigate = useNavigate()
     useEffect(() => {
         doLogout().then(() => {
             props.doLogoutSuccess()
