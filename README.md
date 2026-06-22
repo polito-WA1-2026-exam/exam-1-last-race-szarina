@@ -4,7 +4,7 @@
 ## React Client Application Routes
 
 - Route `/`: landing page for anonymous users, shows the game title, a Login button, and a toggleable "How to play" instructions section
-- Route `/login`: login form (username and password)
+- Route `/login`: login form
 - Route `/home`: home page for logged-in users, with buttons for Ranking, Play, How to play, and Logout
 - Route `/logout`: triggers logout and redirects to `/`
 - Route `/game`: shows the active game, progressing through Setup, Planning, Execution, and Result phases
