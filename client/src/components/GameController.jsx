@@ -9,7 +9,7 @@ const PHASES = {
     SETUP: 'setup',
     PLANNING: 'planning',
     EXECUTION: 'execution',
-    RESULT: 'result',
+    RESULT: 'result'
 }
 
 function GameController() {
